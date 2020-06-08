@@ -11,3 +11,7 @@ GoBarber is a barbershop scheduling application, which aims to connect customers
 It aims to create and register, appointments, clients, as well as make a rigid database with secure relationships.
 
 # What used in?
+
+
+# License
+This aplication is under MIT License, see [license](LICENSE.md) in description to know better the Copyright
