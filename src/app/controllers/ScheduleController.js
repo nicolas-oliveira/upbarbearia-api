@@ -4,6 +4,7 @@ import { Op } from 'sequelize';
 import Appointment from '../models/Appointment';
 import User from '../models/User';
 
+// Lista todos os agendamentos do provider no dia requisitado (query)
 class Schedulecontroller {
   async index(request, response) {
     const checkUserProvider = await User.findOne({
