@@ -7,10 +7,12 @@ import mailConfig from '../config/mail';
 class Mail {
   constructor() {
     const { host, port, secure, auth } = mailConfig;
+    // transporter: conexão com o serviço externo
     this.transporter = nodemailer.createTransport({
       host,
       port,
       secure,
+      // retorna nulo para o serviço externo caso não haja usuário
       auth: auth.user ? auth : null,
     });
     this.configureTemplates();
@@ -22,9 +24,9 @@ class Mail {
       'compile',
       nodemailerhbs({
         viewEngine: exphbs.create({
-          layoutDir: resolve(viewPath, 'layouts'),
+          layoutsDir: resolve(viewPath, 'layouts'), // Fix: layoutDir -> layoutsDir
           partialsDir: resolve(viewPath, 'partials'),
-          defaultLayout: false,
+          defaultLayout: 'default',
           extname: '.hbs',
         }),
         viewPath,
