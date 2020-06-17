@@ -14,7 +14,8 @@ export default async (request, response, next) => {
   try {
     // Em sua definição a função é feita por callback:
     // jwt.verify(token, secret, (err, result) => {});
-    // Para ter uso do async usa-se promisify
+    // Para ter uso do async usa-se promisify que usa
+    // do recurso de curring -> function ()();
     const decoded = await promisify(jwt.verify)(token, authConfig.secret);
 
     request.userId = decoded.id;

@@ -8,7 +8,8 @@ import File from '../models/File';
 
 import Notification from '../schemas/Notification';
 
-import Mail from '../../lib/Mail';
+import CancellationMail from '../jobs/CancellationMail';
+import Queue from '../../lib/Queue';
 
 class AppointmentController {
   // Listar os appointments que o usuário atual solicitou
@@ -137,7 +138,8 @@ class AppointmentController {
         error: "You don't have permission to cancel this appointment.",
       });
     }
-    const dateWithSub = subHours(appointment.date, 2);
+    // deve-se cancelar com 2 horas de antecedência
+    const dateWithSub = subHours(appointment.date, 2); // subtrai as horas
 
     if (isBefore(dateWithSub, new Date())) {
       return response.status(401).json({
@@ -149,20 +151,10 @@ class AppointmentController {
 
     await appointment.save();
 
-    // Envio dos emails
-    await Mail.sendMail({
-      to: `${appointment.provider.name} <${appointment.provider.email}>`,
-      sbject: 'Agendamento cancelado',
-      template: 'cancellation',
-      context: {
-        provider: appointment.provider.name,
-        user: appointment.user.name,
-        date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
-          locale: pt,
-        }),
-      },
+    await Queue.add(CancellationMail.key, {
+      appointment,
     });
-    console.log('fala fiote');
+
     return response.json(appointment);
   }
 }
