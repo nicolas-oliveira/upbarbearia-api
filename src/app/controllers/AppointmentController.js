@@ -16,13 +16,13 @@ class AppointmentController {
   async index(request, response) {
     const { page = 1 } = request.query;
 
-    const appointments = await Appointment.findAll({
+    const appointments = await Appointment.finddAll({
       where: {
         user_id: request.userId,
         cancelled_at: null,
       },
       order: ['date'],
-      attributes: ['id', 'date', 'created_at', 'user_id'],
+      attributes: ['id', 'date', 'created_at', 'user_id', 'past', 'cancelable'],
       limit: 20,
       offset: (page - 1) * 20, // Quantidade a ser mostrada na paginação
       include: [
