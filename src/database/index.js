@@ -21,6 +21,7 @@ class Database {
     models
       .map((model) => model.init(this.connection))
       .map(
+        // && -> Se não houver associate não irá executar a segunda parte
         (model) => model.associate && model.associate(this.connection.models)
       );
   }
