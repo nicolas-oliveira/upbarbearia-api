@@ -17,7 +17,6 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.post('/users', UserController.store);
-
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware); // Abaixo todos devem usar o JWT

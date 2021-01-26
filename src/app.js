@@ -3,11 +3,11 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import Youth from 'youch';
-import * as Sentry from '@sentry/node';
+// import * as Sentry from '@sentry/node';
 
 import 'express-async-errors';
 
-import sentryConfig from './config/sentry';
+// import sentryConfig from './config/sentry';
 import routes from './routes';
 
 import './database';
@@ -16,7 +16,7 @@ class App {
   constructor() {
     this.server = express();
 
-    Sentry.init(sentryConfig); // Tratamento de exceções
+    // Sentry.init(sentryConfig); // Tratamento de exceções
 
     this.middlewares();
     this.routes();
@@ -25,7 +25,7 @@ class App {
 
   middlewares() {
     // Request handler ->
-    this.server.use(Sentry.Handlers.requestHandler());
+    // this.server.use(Sentry.Handlers.requestHandler());
     this.server.use(express.json());
     this.server.use(
       '/files',
@@ -35,7 +35,7 @@ class App {
 
   routes() {
     this.server.use(routes);
-    this.server.use(Sentry.Handlers.errorHandler()); // erros do sentry
+    // this.server.use(Sentry.Handlers.errorHandler()); // erros do sentry
   }
 
   exceptionHandler() {

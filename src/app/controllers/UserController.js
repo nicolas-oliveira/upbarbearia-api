@@ -53,6 +53,7 @@ class UserControler {
 
     const { email, oldPassword } = request.body;
     const user = await User.findByPk(request.userId); // Find by primary key
+
     if (email !== user.email) {
       const userExists = await User.findOne({
         where: { email },

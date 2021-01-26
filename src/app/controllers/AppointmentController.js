@@ -16,7 +16,7 @@ class AppointmentController {
   async index(request, response) {
     const { page = 1 } = request.query;
 
-    const appointments = await Appointment.finddAll({
+    const appointments = await Appointment.findAll({
       where: {
         user_id: request.userId,
         cancelled_at: null,
@@ -108,6 +108,7 @@ class AppointmentController {
       "'dia' dd 'de' MMMM', às' H:mm'h'",
       { locale: pt }
     );
+
     await Notification.create({
       content: `Novo agendamento de ${user.name} para ${formattedDate}`,
       user: provider_id,

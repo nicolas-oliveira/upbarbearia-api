@@ -1,5 +1,5 @@
-import User from '../models/User';
-import Notification from '../schemas/Notification';
+import User from '../models/User'; // sequelize
+import Notification from '../schemas/Notification'; // mongo
 
 class NotificationController {
   async index(request, response) {

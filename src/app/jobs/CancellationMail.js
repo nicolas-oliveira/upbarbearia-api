@@ -10,7 +10,6 @@ class CancellationMail {
 
   async handle({ data }) {
     const { appointment } = data;
-    console.log('Foi executada a fila!');
     // Envio dos emails
     await Mail.sendMail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,

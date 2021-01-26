@@ -18,6 +18,7 @@ class AvailableController {
     if (!date) {
       return response.status(400).json({ error: 'Invalid date' });
     }
+
     const searchDate = Number(date);
 
     const appointments = await Appointment.findAll({
@@ -51,6 +52,7 @@ class AvailableController {
         setMinutes(setHours(searchDate, hour), minute),
         0
       );
+
       return {
         time,
         value: format(value, "yyyy-MM-dd'T'HH:mm:ssxxx"),

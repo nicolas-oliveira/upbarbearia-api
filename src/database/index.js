@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize'; // Realizar a conexão com o banco de dados
+import Sequelize from 'sequelize';
 import mongoose from 'mongoose';
 
 import User from '../app/models/User';

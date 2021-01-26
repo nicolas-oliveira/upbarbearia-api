@@ -1,4 +1,4 @@
-import File from '../models/File';
+import File from '../models/File'; // sequelize
 
 class FileController {
   async store(request, response) {
