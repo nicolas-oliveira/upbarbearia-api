@@ -12,7 +12,6 @@ It aims to create and register, appointments, clients, as well as make a rigid d
 # What used in?
 - Sentry email automation
 - JWT Authentication
-- Sucrase
 - Express
 - Handlebars
 
@@ -22,10 +21,55 @@ To performe the max this repo exemplify how the aplications can be with large cl
 - Redis (Temporary data)
 - MongoDB (No Estructure data like schedule)
 
-## Must have developer pratices!
+## Must have best developer pratices!
 - Eslint
--
+- Sucrase
+- Prettier
 
+# Simple routes:
+To create a new user:
+```
+/users
+```
+With:
+```json
+{
+  "name": "Barber Administrator",
+  "email": "barberadm@barbearia.com",
+  "password": "123456"
+}
+```
+Returns:
+```json
+{
+ "id": 21,
+ "name": "Barber Administrator",
+ "email": "barberadm@barbearia.com",
+ "provider": false
+}
+```
+To create a new session:
+```
+/sessions
+```
+
+```json
+{
+  "email": "barberadm@barbearia.com",
+  "password": "123456"
+}
+```
+Returns:
+```json
+{
+ "user": {
+  "id": 20,
+  "name": "Barber Administrator",
+  "email": "barberadm@barbearia.com"
+ },
+ "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImlhdCI6MTYxMTY4NjQ5OSwiZXhwIjoxNjEyMjkxMjk5fQ.A1kBo8jHrYkCh14eJB8lfHBf5YdsLyIMmFYTH2ESwbI"
+}
+```
 # License
 This aplication is under MIT License, see [license](LICENSE.md) in description to know better the Copyright
 
