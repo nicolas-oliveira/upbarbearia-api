@@ -16,7 +16,7 @@ It aims to create and register, appointments, clients, as well as make a rigid d
 - Handlebars
 
 ## All Databases in one aplication!
-To performe the max this repo exemplify how the aplications can be with large clients!
+To demonstrate the limit of the application prepared for thousands of customers!
 - PostgreSQL (Estructure datas: User, client)
 - Redis (Temporary data)
 - MongoDB (No Estructure data like schedule)
